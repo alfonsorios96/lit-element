@@ -1,0 +1,16 @@
+{
+  "name": "sample",
+  "dependencies": {
+    "@vaadin/vaadin-button": "^2.4.0",
+    "@vaadin/vaadin-text-field": "^2.8.1",
+    "lit-element": "^2.4.0"
+  },
+  "devDependencies": {
+    "es-dev-server": "^1.57.8",
+    "json-server": "^0.16.2"
+  },
+  "scripts": {
+    "dev": "es-dev-server --node-resolve --watch",
+    "api": "json-server --watch db.json"
+  }
+}
