@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="module" src="LifeCycle.js"></script>
+    <!--
+        Se pausa el renderizado del DOM hasta que se DESCARGUE y SE EJECUTE el código JS asociado al script.
+    -->
+    <script type="module" src="LifeCycle.js" async></script>
+    <!--
+        Se DESCARGA el código JS asoaciado al script sin interrumpir el renderizado. Se ejecuta en el momento en el que se termina de descargar.
+    -->
+    <script type="module" src="LifeCycle.js" defer></script>
+    <!--
+        Cuando se termina el renderizado de HTML ejecuta el código JS descargado. Se descarga en paralelo al render de HTML sin interrupción.
+    -->
+</head>
+<body>
+    <script type="module" src="LifeCycle.js"></script>
+    <!--
+        Se descarga y se ejecuta hasta el final.
+    -->
+    <life-cycle my-prop="sldfnlsfdlsflsf"></life-cycle>
+</body>
+</html>

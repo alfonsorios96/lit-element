@@ -1,0 +1,13 @@
+{
+  "name": "lifecycle",
+  "dependencies": {
+    "lit-element": "^2.4.0"
+  },
+  "devDependencies": {
+    "es-dev-server": "^1.57.8"
+  },
+  "scripts": {
+    "dev": "es-dev-server --node-resolve --watch",
+    "api": "json-server --watch db.json"
+  }
+}
