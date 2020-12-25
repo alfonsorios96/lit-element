@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "web-dev-server --node-resolve --open"
+    "serve": "web-dev-server --node-resolve --open",
+    "build": "rimraf dist && rollup -c rollup.config.js"
   },
   "dependencies": {
     "@polymer/paper-toast": "^3.0.1",
@@ -13,7 +14,13 @@
     "socket.io-client": "^3.0.4"
   },
   "devDependencies": {
-    "@web/dev-server": "^0.1.1"
+    "@lopatnov/rollup-plugin-uglify": "^2.1.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "@web/dev-server": "^0.1.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.35.1",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-filesize": "^9.1.0"
   },
   "keywords": [],
   "author": "",
