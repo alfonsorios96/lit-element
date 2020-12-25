@@ -1,0 +1,21 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "web-dev-server --node-resolve --open"
+  },
+  "dependencies": {
+    "@polymer/paper-toast": "^3.0.1",
+    "cors": "^2.8.5",
+    "lit-element": "^2.4.0",
+    "socket.io-client": "^3.0.4"
+  },
+  "devDependencies": {
+    "@web/dev-server": "^0.1.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
