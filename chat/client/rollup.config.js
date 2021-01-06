@@ -1,7 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve';
 import filesize from 'rollup-plugin-filesize';
 import copy from 'rollup-plugin-copy';
-import uglify from '@lopatnov/rollup-plugin-uglify';
 
 const name = `${((new Date()).getTime())}.bundled.js`;
 
@@ -18,20 +17,7 @@ const copyConfig = {
             dest:'dist',
             transform: (content) => {
                 content = content.toString().replace('ChatApp.js', `./${name}`);
-                content = content.toString().replace('<!-- SW -->', `
-                    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').then(registration => {
-                // Registration was successful
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                initialiseState();
-            }, error => {
-                // registration failed :(
-                console.log('ServiceWorker registration failed: ', error);
-            });
-        });
-    }
-                `);
+                content = content.toString().replace('node_modules/socket.io-client/dist/socket.io.js', 'socket.io.js');
                 return content;
             }
         },
@@ -46,6 +32,18 @@ const copyConfig = {
         {
             src: 'sw.js',
             dest: 'dist'
+        },
+        {
+            src: 'manifest.json',
+            dest: 'dist'
+        },
+        {
+            src: 'icon.png',
+            dest: 'dist'
+        },
+        {
+            src: 'node_modules/socket.io-client/dist/socket.io.js',
+            dest: 'dist'
         }
     ]
 };
@@ -58,17 +56,6 @@ const config = {
     plugins: [
         resolve(),
         copy(copyConfig),
-        uglify({
-            output: {
-                comments: function(node, comment) {
-                    if (comment.type === "comment2") {
-                        // multiline comment
-                        return /@preserve|@cc_on/i.test(comment.value);
-                    }
-                    return false;
-                }
-            }
-        }),
         filesize(filesizeConfig)
     ]
 };

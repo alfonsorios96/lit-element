@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "web-dev-server --node-resolve --open",
-    "build": "rimraf dist && rollup -c rollup.config.js"
+    "serve": "cp environments/development.json .env.json && web-dev-server --node-resolve --open",
+    "build": "rimraf dist && rollup -c rollup.config.js && cp environments/production.json dist/.env.json"
   },
   "dependencies": {
     "@polymer/paper-toast": "^3.0.1",

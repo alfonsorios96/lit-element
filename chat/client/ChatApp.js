@@ -143,7 +143,6 @@ class ChatApp extends LitElement {
         this.typing = false;
         this.lastTypingTime = 0;
 
-        this.socket = io.connect('http://localhost:3000', {forceNew: true});
         this.chat = [];
 
         // Declare and init constants
@@ -185,8 +184,12 @@ class ChatApp extends LitElement {
         `;
     }
 
-    firstUpdated(_changedProperties) {
+    async firstUpdated(_changedProperties) {
         super.firstUpdated(_changedProperties);
+
+        const response = await fetch('.env.json');
+        const env = await response.json();
+        this.socket = io.connect(env.SOCKET_URL, {forceNew: true});
 
         // Initialize variables
         this.$usernameInput = this.shadowRoot.querySelector('.usernameInput'); // Input for username
@@ -217,6 +220,9 @@ class ChatApp extends LitElement {
         // Whenever the server emits 'new message', update the chat body
         this.socket.on('new message', (data) => {
             this.addChatMessage(data);
+            navigator.serviceWorker.getRegistration().then(registration => {
+                registration.showNotification('Hello world!');
+            });
         });
 
         // Whenever the server emits 'user joined', log it in the chat body

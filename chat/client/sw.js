@@ -1,4 +1,5 @@
 const CACHE_NAME = 'my-site-cache-v1';
+
 const urlsToCache = [
     '/ChatApp.js',
     '/style.css'
@@ -50,7 +51,8 @@ self.addEventListener('push', async (event) => {
         const response = await fetch('/inbox.json');
         await cache.put('/inbox.json', response.clone());
         const emails = await response.json();
-        registration.showNotification("New email", {
+
+        self.registration.showNotification("New email", {
             body: "From " + emails[0].from.name,
             tag: "new-email"
         });

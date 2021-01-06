@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "node server.js"
+    "start": "cp .env.dev .env && node server.js",
+    "build": "cp .env.prod .env"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^3.0.4"
+    "socket.io": "^3.0.4",
+    "dotenv": "^8.2.0"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alfonso Rios <alfonso@futureis.tech>",
   "license": "ISC"
 }

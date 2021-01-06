@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <title>Socket.IO Chat Example</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="chatalex">
+    <meta name="apple-mobile-web-app-title" content="chatalex">
+    <meta name="msapplication-starturl" content="/index.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" sizes="24x24" href="icon.png">
+    <link rel="apple-touch-icon" sizes="24x24" href="icon.png">
+
     <script src="node_modules/socket.io-client/dist/socket.io.js"></script>
     <script type="module" src="ChatApp.js"></script>
 </head>
@@ -55,7 +67,18 @@
         });
     }
 
-    <!-- SW -->
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').then(registration => {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                initialiseState();
+            }, error => {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+    }
 </script>
 </body>
 </html>

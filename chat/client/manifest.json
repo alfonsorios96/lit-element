@@ -1,0 +1,13 @@
+{
+  "name": "chat-alex",
+  "short_name": "chatalex",
+  "lang": "es-US",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "24x24"
+    }
+  ]
+}

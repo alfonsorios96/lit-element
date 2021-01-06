@@ -1,12 +1,17 @@
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
+
+const dotenv = require('dotenv');
+dotenv.config();
+
 const io = require('socket.io')(server, {
     cors: {
-        origin: "http://localhost:8000",
-        methods: ["GET", "POST"]
+        origin: process.env.CORS_ALLOWED,
+        methods: ['GET', 'POST']
     }
 });
+
 const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
