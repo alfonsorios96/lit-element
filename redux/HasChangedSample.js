@@ -1,6 +1,6 @@
 import {LitElement, html} from "lit-element";
 
-class MyApp extends LitElement {
+class HasChangedSample extends LitElement {
     static get properties() {
         return {
             _foo: {
@@ -74,4 +74,4 @@ class MyApp extends LitElement {
     }
 }
 
-window.customElements.define('my-app', MyApp);
+window.customElements.define('my-app', HasChangedSample);
