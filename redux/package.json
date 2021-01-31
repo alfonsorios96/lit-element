@@ -9,6 +9,7 @@
   "dependencies": {
     "lit-element": "^2.4.0",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "pwa-helpers": "^0.9.1",
     "nanoid": "^3.1.20"
@@ -16,7 +17,10 @@
   "devDependencies": {
     "@web/dev-server": "^0.1.5"
   },
-  "keywords": ["lit-element", "redux"],
+  "keywords": [
+    "lit-element",
+    "redux"
+  ],
   "author": "",
   "license": "ISC"
 }

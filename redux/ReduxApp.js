@@ -4,8 +4,8 @@ import '@vaadin/vaadin-select/vaadin-select';
 import '@vaadin/vaadin-list-box/vaadin-list-box';
 import '@vaadin/vaadin-item/vaadin-item';
 
-import { connect } from 'pwa-helpers';
-import { store } from './store';
+import {connect} from 'pwa-helpers';
+import {store} from './store';
 import {addTodo, clearCompleted, updateFilter} from "./actions";
 
 class ReduxApp extends connect(store)(LitElement) {
@@ -46,10 +46,10 @@ class ReduxApp extends connect(store)(LitElement) {
             <paper-input label="Agregar nueva tarea"></paper-input>
             <button @click="${this.addTodo}">Agregar</button>
             <button @click="${this.clearCompleted}">Limpiar los completados</button>
-            
+
             <h2>Tareas</h2>
             <vaadin-select id="filter" @value-changed="${this.filterChanged}"></vaadin-select>
-            
+
             <table>
                 <tr>
                     <th>Tarea</th>
@@ -65,22 +65,33 @@ class ReduxApp extends connect(store)(LitElement) {
         `;
     }
 
-    addTodo() {
+    async addTodo() {
         const task = this.shadowRoot.querySelector('paper-input');
-        if(task.value !== '') {
-            store.dispatch(addTodo(task.value));
-            task.value = '';
+        if (task.value !== '') {
+            store.dispatch(addTodo(task.value))
+                .then(resolved => task.value = '')
+                .catch(error => {
+                    // TODO
+                });
+
         }
     }
 
-    filterChanged({detail}) {
-        if(detail.value && detail.value !== '') {
-            store.dispatch(updateFilter(detail.value));
+    async filterChanged({detail}) {
+        if (detail.value && detail.value !== '') {
+            await store.dispatch(updateFilter(detail.value));
         }
     }
 
-    clearCompleted() {
-        store.dispatch(clearCompleted());
+    async clearCompleted() {
+        await store.dispatch(clearCompleted());
+        /*
+        * const r1 = await store.dispatch(clearCompleted());
+         const r2 = await store.dispatch(clearCompleted(r1));
+         await store.dispatch(clearCompleted(r2));
+         await store.dispatch(clearCompleted());
+        * */
+
     }
 }
 
